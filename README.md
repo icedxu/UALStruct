@@ -3,5 +3,5 @@
  </br>可以改变标题栏的颜色，高度，文字，图标等
  </br>此项目是用QT5.2实现的，可以在windows和centos6.5上运行
 <div align="center" >
-<img src="QT_NO_Frame.png" />
+<img src="UALStruct.png" />
 </div>
