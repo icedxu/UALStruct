@@ -49,9 +49,9 @@ void succ::SetRect()
 void succ::SetColor()
 {
   bool ok;
-  int a = color_text1->text().toInt(&ok,10),
-      b = color_text2->text().toInt(&ok,10),
-      c = color_text3->text().toInt(&ok,10);  //将QString类型转换为int类型
+  int a = m_pTextColorR->text().toInt(&ok,10),
+      b = m_pTextColorG->text().toInt(&ok,10),
+      c = m_pTextColorB->text().toInt(&ok,10);  //将QString类型转换为int类型
 
   if(a<0 ||a>255|| b<0 ||b>255|| c<0 ||c>255)
      {
@@ -70,17 +70,17 @@ void succ::SetColor()
 void succ::Interface()
 {
 //颜色
-  color_btn = new QPushButton(QStringLiteral("换标题栏的颜色"));
-  color_text1 =new QLineEdit;color_text1->setPlaceholderText("R");color_text1->setFixedWidth(25);
-  color_text2 =new QLineEdit;color_text2->setPlaceholderText("G");color_text2->setFixedWidth(25);
-  color_text3 =new QLineEdit;color_text3->setPlaceholderText("B");color_text3->setFixedWidth(25);
-  hb = new QHBoxLayout;
-  hb->setSpacing(0); //使hb中的控件间的间距为0
-  hb->addWidget(color_text1);
-  hb->addWidget(color_text2);
-  hb->addWidget(color_text3);
-  hb->addWidget(color_btn);
-  hb->addStretch();//靠左对齐
+  m_pBtnColor = new QPushButton(QStringLiteral("换标题栏的颜色"));
+  m_pTextColorR =new QLineEdit;m_pTextColorR->setPlaceholderText("R");m_pTextColorR->setFixedWidth(25);
+  m_pTextColorG =new QLineEdit;m_pTextColorG->setPlaceholderText("G");m_pTextColorG->setFixedWidth(25);
+  m_pTextColorB =new QLineEdit;m_pTextColorB->setPlaceholderText("B");m_pTextColorB->setFixedWidth(25);
+  m_pColorLayout = new QHBoxLayout;
+  m_pColorLayout->setSpacing(0); //使hb中的控件间的间距为0
+  m_pColorLayout->addWidget(m_pTextColorR);
+  m_pColorLayout->addWidget(m_pTextColorG);
+  m_pColorLayout->addWidget(m_pTextColorB);
+  m_pColorLayout->addWidget(m_pBtnColor);
+  m_pColorLayout->addStretch();//靠左对齐
 
 
 
@@ -89,12 +89,12 @@ void succ::Interface()
   int nMax = 100;
   int nSingleStep = 5;
   // 微调框
-  pSpinBox = new QSpinBox(this);
-  pSpinBox->setFixedWidth(40);
-  pSpinBox->setMinimum(nMin);  // 最小值
-  pSpinBox->setMaximum(nMax);  // 最大值
-  pSpinBox->setSingleStep(nSingleStep);  // 步长
-  pSpinBox->setValue(10); //默认值为10
+  m_pSpinBox = new QSpinBox(this);
+  m_pSpinBox->setFixedWidth(40);
+  m_pSpinBox->setMinimum(nMin);  // 最小值
+  m_pSpinBox->setMaximum(nMax);  // 最大值
+  m_pSpinBox->setSingleStep(nSingleStep);  // 步长
+  m_pSpinBox->setValue(10); //默认值为10
 
   // 滑动条
   QSlider *pSlider = new QSlider(this);
@@ -107,69 +107,69 @@ void succ::Interface()
 
 
 
-  btn_h = new QPushButton(QStringLiteral("换标题栏的高度"));
-  hb1 = new QHBoxLayout;
-  hb1->addWidget(pSpinBox);
-  hb1->addWidget(pSlider);
-  hb1->addWidget(btn_h);
-  hb1->addStretch();//靠左对齐
-  hb1->setSpacing(0); //使hb中的控件间的间距为0
+  m_pBtnHeight = new QPushButton(QStringLiteral("换标题栏的高度"));
+  m_pSliderLayout = new QHBoxLayout;
+  m_pSliderLayout->addWidget(m_pSpinBox);
+  m_pSliderLayout->addWidget(pSlider);
+  m_pSliderLayout->addWidget(m_pBtnHeight);
+  m_pSliderLayout->addStretch();//靠左对齐
+  m_pSliderLayout->setSpacing(0); //使hb中的控件间的间距为0
 
 
 //文字
 
-  btn_t = new QPushButton(QStringLiteral("换标题栏的文字"));
-  T_text = new QLineEdit;
-  hb2 = new QHBoxLayout;
-  hb2->addWidget(T_text);
-  hb2->addWidget(btn_t);
-  hb2->addStretch();//靠左对齐
-  hb2->setSpacing(0); //使hb中的控件间的间距为0
+  m_pBtnText = new QPushButton(QStringLiteral("换标题栏的文字"));
+  m_pText = new QLineEdit;
+  m_pTextLayout = new QHBoxLayout;
+  m_pTextLayout->addWidget(m_pText);
+  m_pTextLayout->addWidget(m_pBtnText);
+  m_pTextLayout->addStretch();//靠左对齐
+  m_pTextLayout->setSpacing(0); //使hb中的控件间的间距为0
 
 
 
  //图标
-  T_ico = new QLineEdit;
-  btn_i = new QPushButton(QStringLiteral("换标题栏的图标(没做)"));
-  hb3 = new QHBoxLayout;
-  hb3->addWidget(T_ico);
-  hb3->addWidget(btn_i);
-  hb3->addStretch();//靠左对齐
-  hb3->setSpacing(0); //使hb中的控件间的间距为0
+  m_pIco = new QLineEdit;
+  m_pBtnIco = new QPushButton(QStringLiteral("换标题栏的图标"));
+  m_pIcoLayout = new QHBoxLayout;
+  m_pIcoLayout->addWidget(m_pIco);
+  m_pIcoLayout->addWidget(m_pBtnIco);
+  m_pIcoLayout->addStretch();//靠左对齐
+  m_pIcoLayout->setSpacing(0); //使hb中的控件间的间距为0
 
 
-  QVBoxLayout *vb = new QVBoxLayout;
-  vb->addStretch();
-  vb->addLayout(hb);
-  vb->addLayout(hb1);
-  vb->addLayout(hb2);
-  vb->addLayout(hb3);
-  vb->addStretch();
+  QVBoxLayout *pvbLayout = new QVBoxLayout;
+  pvbLayout->addStretch();
+  pvbLayout->addLayout(m_pColorLayout);
+  pvbLayout->addLayout(m_pSliderLayout);
+  pvbLayout->addLayout(m_pTextLayout);
+  pvbLayout->addLayout(m_pIcoLayout);
+  pvbLayout->addStretch();
 
 
 
-  color_btn->setObjectName("ButtonColor");
-  color_text1->setObjectName("LineEdit");
-  color_text2->setObjectName("LineEdit");
-  color_text3->setObjectName("LineEdit");
+  m_pBtnColor->setObjectName("ButtonColor");
+  m_pTextColorR->setObjectName("LineEdit");
+  m_pTextColorG->setObjectName("LineEdit");
+  m_pTextColorB->setObjectName("LineEdit");
 
-  btn_h->setObjectName("ButtonHeight");
-  btn_t->setObjectName("ButtonColor");
-  btn_i->setObjectName("ButtonHeight");
+  m_pBtnHeight->setObjectName("ButtonHeight");
+  m_pBtnText->setObjectName("ButtonColor");
+  m_pBtnIco->setObjectName("ButtonHeight");
 
-  T_ico->setObjectName("LineEdit");
-  T_text->setObjectName("LineEdit");
+  m_pIco->setObjectName("LineEdit");
+  m_pText->setObjectName("LineEdit");
 
-  this->setLayout(vb);
+  this->setLayout(pvbLayout);
 
   // 连接信号槽（相互改变）
-  connect(pSpinBox, SIGNAL(valueChanged(int)), pSlider, SLOT(setValue(int)));
-  connect(pSlider, SIGNAL(valueChanged(int)), pSpinBox, SLOT(setValue(int)));
+  connect(m_pSpinBox, SIGNAL(valueChanged(int)), pSlider, SLOT(setValue(int)));
+  connect(pSlider, SIGNAL(valueChanged(int)), m_pSpinBox, SLOT(setValue(int)));
 
-  connect(color_btn,SIGNAL(clicked()),this,SLOT(SetColor()));
-  connect(btn_t,SIGNAL(clicked()),this,SLOT(SetText()));
-  connect(btn_h,SIGNAL(clicked()),this,SLOT(SetHeight()));
-  connect(btn_i,SIGNAL(clicked()),this,SLOT(SetIco()));
+  connect(m_pBtnColor,SIGNAL(clicked()),this,SLOT(SetColor()));
+  connect(m_pBtnText,SIGNAL(clicked()),this,SLOT(SetText()));
+  connect(m_pBtnHeight,SIGNAL(clicked()),this,SLOT(SetHeight()));
+  connect(m_pBtnIco,SIGNAL(clicked()),this,SLOT(SetIco()));
 
 
 
@@ -179,7 +179,7 @@ void succ::Interface()
 void succ::SetText()
 {
   QString str;
-  str = T_text->text();
+  str = m_pText->text();
   m_titleBar->setTitleContent(str);
 }
 
@@ -188,7 +188,7 @@ void succ::SetIco()
 {
   //getOpenFileName()的参数，1--指定父组件，2--指定对话框标题，3--对话框显示时的默认打开目录，4--对话框显示的文件类型（只显示指定后缀名的）
     QString filePath= QFileDialog::getOpenFileName(this,tr("选择文件"),"","");
-    T_ico->setText(filePath);
+    m_pIco->setText(filePath);
 
     //以下操作是为了保存文件名与文件后缀名
    QStringList  pathList1 = filePath.split("/");
@@ -205,7 +205,7 @@ void succ::SetIco()
 
 void succ::SetHeight()
 {
-  int a = pSpinBox->value();
+  int a = m_pSpinBox->value();
   m_titleBar->setFixedHeight(a);
 }
 

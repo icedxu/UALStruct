@@ -31,15 +31,25 @@ public:
 
 private:
         void initTitleBar();
-        QPushButton *color_btn;
-        QLineEdit   *color_text1,*color_text2,*color_text3;
-        QHBoxLayout *hb;
+        QPushButton *m_pBtnColor;
+        QPushButton *m_pBtnText;
+        QPushButton *m_pBtnHeight;
+        QPushButton *m_pBtnIco;
 
-        QHBoxLayout *hb1,*hb2,*hb3;
+        QLineEdit   *m_pTextColorR;
+        QLineEdit   *m_pTextColorG;
+        QLineEdit   *m_pTextColorB;
+        QLineEdit   *m_pText;
+        QLineEdit   *m_pIco;
 
-        QPushButton *btn_h,*btn_t,*btn_i;
-        QLineEdit   *T_text ,*T_ico;
-        QSpinBox *pSpinBox;
+        QHBoxLayout *m_pColorLayout;
+        QHBoxLayout *m_pSliderLayout;
+        QHBoxLayout *m_pIcoLayout;
+        QHBoxLayout *m_pTextLayout;
+
+
+        QSpinBox *m_pSpinBox;
+
         void loadStyleSheet(const QString &sheetName);
 
 
