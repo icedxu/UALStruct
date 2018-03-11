@@ -9,7 +9,7 @@ BaseWindow::BaseWindow(QWidget *parent) :
 {
   // FramelessWindowHint属性设置窗口去除边框;
   // WindowMinimizeButtonHint 属性设置在窗口最小化时，点击任务栏窗口可以显示出原窗口;
-  this->setWindowFlags(Qt::FramelessWindowHint);
+  this->setWindowFlags(Qt::FramelessWindowHint| Qt::WindowMinimizeButtonHint);
   setAttribute(Qt::WA_TranslucentBackground);
   //初始化标题栏
   initTitleBar();
@@ -81,7 +81,7 @@ void BaseWindow::onButtonMaxClicked()
 {
 	m_titleBar->saveRestoreInfo(this->pos(), QSize(this->width(), this->height()));
 	QRect desktopRect = QApplication::desktop()->availableGeometry();
-	QRect FactRect = QRect(desktopRect.x() - 3, desktopRect.y() - 3, desktopRect.width() + 6, desktopRect.height() + 6);
+	QRect FactRect = QRect(desktopRect.x() , desktopRect.y() , desktopRect.width() , desktopRect.height() );
 	setGeometry(FactRect);
 }
 

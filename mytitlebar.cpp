@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QDesktopServices>
 
 #define BUTTON_HEIGHT 30		// 按钮高度;
 #define BUTTON_WIDTH 30			// 按钮宽度;
@@ -16,7 +17,7 @@ mytitlebar::mytitlebar(QWidget *parent) :
   ,m_colorG(153)
   ,m_colorB(153)
   ,m_isPressed(false)
-  ,m_buttonType(MIN_BUTTON)
+  ,m_buttonType(MIN_MAX_BUTTON)
 
 {
 
@@ -184,6 +185,7 @@ void mytitlebar::paintEvent(QPaintEvent *event)
   pathBack.addRoundedRect(QRect(0,0,this->width(),this->height()),3,3);
   painter.setRenderHint(QPainter::SmoothPixmapTransform,true);
   painter.fillPath(pathBack,QBrush(QColor(m_colorR,m_colorG,m_colorB)));
+
 
   // 当窗口最大化或者还原后，窗口长度变了，标题栏的长度应当一起改变;
           if (this->width() != this->parentWidget()->width())

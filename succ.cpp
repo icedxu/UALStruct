@@ -13,14 +13,14 @@ succ::succ(QWidget *parent) :
   ui(new Ui::succ)
 {
   ui->setupUi(this);
-  setFixedSize(315,300);
+  //setFixedSize(315,300);
 
   loadStyleSheet("MyTitle");
 
 
   // 初始化标题栏;
   initTitleBar();
-  SetRect(); //设置窗体圆角
+  //SetRect(); //设置窗体圆角
   Interface();
 
 
@@ -217,7 +217,7 @@ void succ::initTitleBar()
 	m_titleBar->setTitleRoll();
 	m_titleBar->setTitleIcon("://Resources/MyTitle/titleicon.png");
 	m_titleBar->setTitleContent(QStringLiteral("这是一个Qt自定义窗口的例子"));
-	m_titleBar->setButtonType(MIN_BUTTON);
+	m_titleBar->setButtonType(MIN_MAX_BUTTON);
 	m_titleBar->setTitleWidth(this->width());
 
 
